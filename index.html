@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Dashboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Inter Font CDN (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="bg-blue-100 flex justify-center items-start min-h-screen p-5 box-border">
+  <div class="container">
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+      <i class="fas fa-list-check text-2xl"></i> Todo App
+      <!-- Profile Image with Dropdown -->
+      <div class="relative profile-dropdown" id="profile-dropdown">
+        <div id="profile-img-container"
+          class="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-md cursor-pointer">
+          <img src="img/profile.png" alt="User Profile" class="w-full h-full object-cover">
+        </div>
+        <div id="profile-dropdown-menu"
+          class="dropdown-menu absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg z-50 transform transition-all duration-300 origin-top-right">
+          <div class="p-4 text-center">
+            <img src="img/profile.png" alt="User Profile" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
+            <p class="font-semibold text-gray-800">Gilang Ramadhan</p>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a href="https://www.linkedin.com/in/gilang-gr/" target="_blank"
+            class="dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-100">Linkedin <i
+              class="ml-1 fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/initialgr" target="_blank"
+            class="dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-100">Github <i
+              class="ml-1 fa-brands fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Greeting -->
+    <div class="mb-8">
+      <p class="text-gray-700 text-xl font-medium" id="greeting-text">Good afternoon,</p>
+      <h1 class="text-blue-600 text-2xl font-semibold mt-1">Gilang Ramadhan</h1>
+      <p class="text-gray-500 text-sm mt-1" id="current-date"></p>
+    </div>
+
+    <!-- Progress Circle / Clock -->
+    <div class="progress-circle">
+      <!-- Clock Hands -->
+      <div class="clock-hand hour-hand" id="hour-hand"></div>
+      <div class="clock-hand minute-hand" id="minute-hand"></div>
+      <div class="clock-hand second-hand" id="second-hand"></div>
+      <div class="center-dot"></div>
+    </div>
+
+    <!-- Tasks Lists Section -->
+    <div class="flex justify-between items-center mb-4 mt-8">
+      <h2 class="text-gray-800 text-xl font-semibold">Tasks Lists</h2>
+      <!-- Button to add a new task card -->
+      <button id="add-new-card-btn"
+        class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-lg">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+
+    <!-- Task Cards Container -->
+    <div id="task-cards-container" class="flex overflow-x-auto pb-4 -mx-4 px-4">
+      <!-- Task cards will be rendered here by JavaScript -->
+    </div>
+
+    <!-- Delete All Task Lists Button -->
+    <div class="mt-8 text-center opacity-0 pointer-events-none transition-opacity duration-300">
+      <button id="delete-all-cards-btn"
+        class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 ease-in-out">
+        <i class="fas fa-trash-alt mr-2"></i> Delete All Task Lists
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom Modal Structure -->
+  <div id="modalBackdrop" class="hidden modal-backdrop">
+    <div id="modalContent" class="modal-content">
+      <h3 id="modal-title" class="text-xl font-bold mb-4">Modal Title</h3>
+
+      <!-- Input fields for Add/Edit Task/List -->
+      <input type="text" id="modal-task-text" placeholder="Task description"
+        class="mb-4 p-2 border border-gray-300 rounded w-full" />
+      <input type="date" id="modal-due-date" class="mb-4 p-2 border border-gray-300 rounded w-full" />
+
+      <!-- View Task Details Section -->
+      <div id="view-task-details" class="hidden">
+        <div class="mb-6">
+          <!-- <h2 id="view-task-title" class="text-2xl font-bold text-gray-800 mb-4"></h2> -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <p id="view-task-description" class="text-gray-600"></p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <i class="fas fa-calendar-day text-gray-500 mr-3 w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-500">Due Date</p>
+              <p id="view-task-date" class="text-gray-700"></p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <i class="fas fa-clock text-gray-500 mr-3 w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-500">Time</p>
+              <p id="view-task-time" class="text-gray-700"></p>
+            </div>
+          </div>
+
+          <!-- <div class="flex items-center">
+            <i class="fas fa-map-marker-alt text-gray-500 mr-3 w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-500">Location</p>
+              <p id="view-task-location" class="text-gray-700">Not specified</p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 mt-4">
+        <button id="modal-cancel-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+          Cancel
+        </button>
+        <button id="modal-save-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

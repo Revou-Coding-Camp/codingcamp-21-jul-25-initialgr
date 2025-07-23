@@ -1,0 +1,227 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #e0f2fe;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Adjust container max-width for larger screens */
+@media (min-width: 768px) {
+  .container {
+    max-width: 900px;
+    /* Wider for desktop */
+  }
+}
+
+.progress-circle {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 8px solid #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Original margin for centering when not in flex row */
+  margin: 32px auto;
+  overflow: hidden;
+}
+
+.clock-hand {
+  position: absolute;
+  background-color: #3b82f6;
+  border-radius: 2px;
+  transform-origin: bottom center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hour-hand {
+  width: 4px;
+  height: 40px;
+  top: calc(50% - 40px);
+  left: calc(50% - 2px);
+}
+
+.minute-hand {
+  width: 3px;
+  height: 60px;
+  top: calc(50% - 60px);
+  left: calc(50% - 1.5px);
+}
+
+.second-hand {
+  width: 2px;
+  height: 70px;
+  top: calc(50% - 70px);
+  left: calc(50% - 1px);
+  background-color: #ef4444;
+  transition: transform 0.1s linear;
+}
+
+.center-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.custom-checkbox input[type="checkbox"]:checked::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
+
+.custom-checkbox .task-text {
+  flex-grow: 1;
+  /* Removed word-break: break-word; as it's not needed with nowrap and ellipsis */
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  max-width: 28rem;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+/* Dropdown specific styles */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  /* Position below the profile image */
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  display: block;
+  color: #374151;
+  /* gray-700 */
+  text-decoration: none;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f4f6;
+  /* gray-100 */
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  /* gray-200 */
+  margin: 0.5rem 0;
+}
+
+/* Task Detail View Styles */
+#view-task-details {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+#view-task-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+#view-task-details::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#view-task-details::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+#view-task-details::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.profile-dropdown .dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.profile-dropdown .dropdown-menu.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  /* Show dropdown on hover only for non-touch devices */
+  .profile-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+}
