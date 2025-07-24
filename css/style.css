@@ -1,61 +1,94 @@
+/* Body styling: Centering content and setting background */
 body {
   font-family: 'Inter', sans-serif;
+  /* Apply Inter font */
   background-color: #e0f2fe;
+  /* Light blue background */
   display: flex;
+  /* Flexbox for centering */
   justify-content: center;
+  /* Center horizontally */
   align-items: flex-start;
+  /* Align to top vertically (with padding) */
   min-height: 100vh;
+  /* Full viewport height */
   padding: 20px;
+  /* Padding around the content */
   box-sizing: border-box;
+  /* Include padding in element's total width and height */
 }
 
+/* Main container styling: Card-like appearance */
 .container {
   max-width: 400px;
+  /* Max width for mobile/smaller screens */
   width: 100%;
+  /* Full width up to max-width */
   background-color: #ffffff;
+  /* White background */
   border-radius: 32px;
+  /* Large rounded corners */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
   padding: 24px;
+  /* Inner padding */
   box-sizing: border-box;
+  /* Include padding in element's total width and height */
 }
 
-/* Adjust container max-width for larger screens */
+/* Responsive adjustment for container max-width on larger screens (e.g., desktop) */
 @media (min-width: 768px) {
   .container {
     max-width: 900px;
-    /* Wider for desktop */
+    /* Wider container for desktop views */
   }
 }
 
+/* Progress/Clock circle styling */
 .progress-circle {
   position: relative;
+  /* For positioning clock hands */
   width: 160px;
   height: 160px;
   border-radius: 50%;
+  /* Make it a circle */
   border: 8px solid #f0f4f8;
+  /* Light border */
   display: flex;
+  /* Flexbox for centering inner elements */
   justify-content: center;
   align-items: center;
-  /* Original margin for centering when not in flex row */
   margin: 32px auto;
+  /* Center horizontally with margin */
   overflow: hidden;
+  /* Hide anything outside the circle */
 }
 
+/* Styling for clock hands */
 .clock-hand {
   position: absolute;
+  /* Position relative to .progress-circle */
   background-color: #3b82f6;
+  /* Blue color for hands */
   border-radius: 2px;
+  /* Slightly rounded edges for hands */
   transform-origin: bottom center;
+  /* Pivot point for rotation */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Smooth rotation transition */
 }
 
+/* Specific dimensions for hour hand */
 .hour-hand {
   width: 4px;
   height: 40px;
   top: calc(50% - 40px);
+  /* Position from top, considering height */
   left: calc(50% - 2px);
+  /* Center horizontally */
 }
 
+/* Specific dimensions for minute hand */
 .minute-hand {
   width: 3px;
   height: 60px;
@@ -63,15 +96,19 @@ body {
   left: calc(50% - 1.5px);
 }
 
+/* Specific dimensions and color for second hand */
 .second-hand {
   width: 2px;
   height: 70px;
   top: calc(50% - 70px);
   left: calc(50% - 1px);
   background-color: #ef4444;
+  /* Red color */
   transition: transform 0.1s linear;
+  /* Faster, linear transition for seconds */
 }
 
+/* Center dot of the clock */
 .center-dot {
   position: absolute;
   width: 8px;
@@ -79,102 +116,151 @@ body {
   background-color: #3b82f6;
   border-radius: 50%;
   z-index: 10;
+  /* Ensure it's on top of hands */
 }
 
+/* Custom checkbox styling for task items */
 .custom-checkbox input[type="checkbox"] {
   appearance: none;
+  /* Hide default checkbox */
   -webkit-appearance: none;
+  /* For Webkit browsers */
   width: 20px;
   height: 20px;
   min-width: 20px;
+  /* Prevent shrinking in flexbox */
   border: 2px solid #cbd5e1;
+  /* Light gray border */
   border-radius: 6px;
+  /* Rounded corners */
   background-color: #ffffff;
+  /* White background */
   cursor: pointer;
+  /* Indicate clickable */
   display: inline-block;
   vertical-align: middle;
   position: relative;
+  /* For custom checkmark */
 }
 
+/* Styling when checkbox is checked */
 .custom-checkbox input[type="checkbox"]:checked {
   background-color: #3b82f6;
+  /* Blue background */
   border-color: #3b82f6;
+  /* Blue border */
 }
 
+/* Custom checkmark using Font Awesome icon */
 .custom-checkbox input[type="checkbox"]:checked::after {
   content: '\f00c';
+  /* Font Awesome check icon unicode */
   font-family: 'Font Awesome 6 Free';
+  /* Specify Font Awesome font */
   font-weight: 900;
+  /* Solid icon weight */
   color: white;
+  /* White checkmark */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* Center the checkmark */
   font-size: 12px;
 }
 
+/* Task text styling within custom checkbox */
 .custom-checkbox .task-text {
   flex-grow: 1;
-  /* Removed word-break: break-word; as it's not needed with nowrap and ellipsis */
+  /* Allows text to take available space */
 }
 
+/* Modal backdrop (overlay) styling */
 .modal-backdrop {
   position: fixed;
+  /* Fixed position relative to viewport */
   inset: 0;
+  /* Cover entire viewport */
   background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black overlay */
   display: flex;
+  /* Flexbox for centering modal content */
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  /* Padding for smaller screens */
   z-index: 1000;
+  /* Ensure it's on top of other content */
 }
 
+/* Modal content styling */
 .modal-content {
   background-color: white;
+  /* White background */
   border-radius: 0.5rem;
+  /* Rounded corners */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Shadow */
   max-width: 28rem;
+  /* Max width for content */
   width: 100%;
+  /* Full width up to max-width */
   padding: 1.5rem;
+  /* Inner padding */
 }
 
-/* Dropdown specific styles */
+/* Dropdown menu styling (for profile) */
 .dropdown-menu {
   position: absolute;
+  /* Position relative to parent (.profile-dropdown) */
   top: 100%;
-  /* Position below the profile image */
+  /* Position below the parent */
   right: 0;
+  /* Align to the right */
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   min-width: 180px;
+  /* Minimum width */
   z-index: 100;
+  /* Ensure it's above other elements */
   opacity: 0;
+  /* Initially hidden */
   visibility: hidden;
+  /* Initially hidden */
   transform: translateY(10px);
+  /* Slightly offset for transition effect */
   transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+  /* Smooth transition */
 }
 
+/* Show dropdown on hover (for desktop) */
 .profile-dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
+/* Dropdown item styling */
 .dropdown-item {
   padding: 0.75rem 1rem;
   display: block;
+  /* Make it a block-level link */
   color: #374151;
   /* gray-700 */
   text-decoration: none;
+  /* Remove underline */
   transition: background-color 0.1s ease-in-out;
+  /* Smooth background change on hover */
 }
 
+/* Dropdown item hover state */
 .dropdown-item:hover {
   background-color: #f3f4f6;
   /* gray-100 */
 }
 
+/* Divider in dropdown */
 .dropdown-divider {
   height: 1px;
   background-color: #e5e7eb;
@@ -182,12 +268,15 @@ body {
   margin: 0.5rem 0;
 }
 
-/* Task Detail View Styles */
+/* Task Detail View specific styles within modal */
 #view-task-details {
   max-height: 70vh;
+  /* Max height for scrollable content */
   overflow-y: auto;
+  /* Enable vertical scrolling */
 }
 
+/* Custom scrollbar for task detail view */
 #view-task-details::-webkit-scrollbar {
   width: 6px;
 }
@@ -206,20 +295,14 @@ body {
   background: #a8a8a8;
 }
 
-.profile-dropdown .dropdown-menu {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
+/* Toggle visibility for dropdown menu using JavaScript */
 .profile-dropdown .dropdown-menu.is-active {
   opacity: 1;
   visibility: visible;
 }
 
+/* Media query for hover effect on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-
-  /* Show dropdown on hover only for non-touch devices */
   .profile-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
