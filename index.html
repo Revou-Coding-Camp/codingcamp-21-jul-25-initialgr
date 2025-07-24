@@ -2,28 +2,38 @@
 <html lang="en">
 
 <head>
+  <!-- Basic Meta Information -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task Dashboard</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Inter Font CDN (Google Fonts) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- External Stylesheets and Libraries -->
+  <!-- Tailwind CSS CDN for utility-first styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts CDN for 'Inter' font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS Styles -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
+<!-- Body of the HTML document -->
 <body class="bg-blue-100 flex justify-center items-start min-h-screen p-5 box-border">
+  <!-- Main Container for the Task Dashboard -->
   <div class="container">
+    <!-- Header Section: App Title and Profile Dropdown -->
     <div class="flex justify-between items-center mb-6">
+      <!-- App Title -->
       <i class="fas fa-list-check text-2xl"></i> Todo App
+      <!-- Profile Dropdown Container -->
       <div class="relative profile-dropdown" id="profile-dropdown">
+        <!-- Clickable Profile Image -->
         <div id="profile-img-container"
           class="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-md cursor-pointer">
           <img src="img/profile.png" alt="User Profile" class="w-full h-full object-cover">
         </div>
+        <!-- Profile Dropdown Menu -->
         <div id="profile-dropdown-menu"
           class="dropdown-menu absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg z-50 transform transition-all duration-300 origin-top-right">
           <div class="p-4 text-center">
@@ -31,6 +41,7 @@
             <p class="font-semibold text-gray-800">Gilang Ramadhan</p>
           </div>
           <div class="dropdown-divider"></div>
+          <!-- Social Media Links -->
           <a href="https://www.linkedin.com/in/gilang-gr/" target="_blank"
             class="dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-100">Linkedin <i
               class="ml-1 fa-brands fa-linkedin"></i></a>
@@ -41,12 +52,14 @@
       </div>
     </div>
 
+    <!-- Greeting and Current Date Section -->
     <div class="mb-8">
       <p class="text-gray-700 text-xl font-medium" id="greeting-text">Good afternoon,</p>
       <h1 class="text-blue-600 text-2xl font-semibold mt-1">Gilang Ramadhan</h1>
       <p class="text-gray-500 text-sm mt-1" id="current-date"></p>
     </div>
 
+    <!-- Analog Clock Display -->
     <div class="progress-circle">
       <div class="clock-hand hour-hand" id="hour-hand"></div>
       <div class="clock-hand minute-hand" id="minute-hand"></div>
@@ -54,17 +67,22 @@
       <div class="center-dot"></div>
     </div>
 
+    <!-- Task List Header and Add Button -->
     <div class="flex justify-between items-center mb-4 mt-8">
       <h2 class="text-gray-800 text-xl font-semibold">Tasks Lists</h2>
+      <!-- Button to add a new task list card -->
       <button id="add-new-card-btn"
         class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-lg">
         <i class="fas fa-plus"></i>
       </button>
     </div>
 
+    <!-- Container for Task List Cards (horizontal scrollable) -->
     <div id="task-cards-container" class="flex overflow-x-auto pb-4 -mx-4 px-4">
+      <!-- Task cards will be rendered here by JavaScript -->
     </div>
 
+    <!-- Delete All Task Lists Button (initially hidden/transparent) -->
     <div class="mt-8 text-center opacity-0 pointer-events-none transition-opacity duration-300">
       <button id="delete-all-cards-btn"
         class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 ease-in-out">
@@ -73,14 +91,17 @@
     </div>
   </div>
 
+  <!-- Modal for Add/Edit/View Task -->
   <div id="modalBackdrop" class="hidden modal-backdrop">
     <div id="modalContent" class="modal-content">
       <h3 id="modal-title" class="text-xl font-bold mb-4">Modal Title</h3>
 
+      <!-- Input fields for task description and due date (shown for add/edit) -->
       <input type="text" id="modal-task-text" placeholder="Task description"
         class="mb-4 p-2 border border-gray-300 rounded w-full" />
       <input type="date" id="modal-due-date" class="mb-4 p-2 border border-gray-300 rounded w-full" />
 
+      <!-- Task Details View (shown for viewTask mode) -->
       <div id="view-task-details" class="hidden">
         <div class="mb-6">
           <div class="bg-gray-50 p-4 rounded-lg">
@@ -107,6 +128,7 @@
         </div>
       </div>
 
+      <!-- Modal Action Buttons -->
       <div class="flex justify-end space-x-2 mt-4">
         <button id="modal-cancel-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
           Cancel
@@ -118,6 +140,7 @@
     </div>
   </div>
 
+  <!-- JavaScript for dynamic functionality -->
   <script src="js/script.js"></script>
 </body>
 
