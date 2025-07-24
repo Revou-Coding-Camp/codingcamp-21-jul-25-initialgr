@@ -17,10 +17,8 @@
 
 <body class="bg-blue-100 flex justify-center items-start min-h-screen p-5 box-border">
   <div class="container">
-    <!-- Top Bar -->
     <div class="flex justify-between items-center mb-6">
       <i class="fas fa-list-check text-2xl"></i> Todo App
-      <!-- Profile Image with Dropdown -->
       <div class="relative profile-dropdown" id="profile-dropdown">
         <div id="profile-img-container"
           class="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-md cursor-pointer">
@@ -43,38 +41,30 @@
       </div>
     </div>
 
-    <!-- Greeting -->
     <div class="mb-8">
       <p class="text-gray-700 text-xl font-medium" id="greeting-text">Good afternoon,</p>
       <h1 class="text-blue-600 text-2xl font-semibold mt-1">Gilang Ramadhan</h1>
       <p class="text-gray-500 text-sm mt-1" id="current-date"></p>
     </div>
 
-    <!-- Progress Circle / Clock -->
     <div class="progress-circle">
-      <!-- Clock Hands -->
       <div class="clock-hand hour-hand" id="hour-hand"></div>
       <div class="clock-hand minute-hand" id="minute-hand"></div>
       <div class="clock-hand second-hand" id="second-hand"></div>
       <div class="center-dot"></div>
     </div>
 
-    <!-- Tasks Lists Section -->
     <div class="flex justify-between items-center mb-4 mt-8">
       <h2 class="text-gray-800 text-xl font-semibold">Tasks Lists</h2>
-      <!-- Button to add a new task card -->
       <button id="add-new-card-btn"
         class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-lg">
         <i class="fas fa-plus"></i>
       </button>
     </div>
 
-    <!-- Task Cards Container -->
     <div id="task-cards-container" class="flex overflow-x-auto pb-4 -mx-4 px-4">
-      <!-- Task cards will be rendered here by JavaScript -->
     </div>
 
-    <!-- Delete All Task Lists Button -->
     <div class="mt-8 text-center opacity-0 pointer-events-none transition-opacity duration-300">
       <button id="delete-all-cards-btn"
         class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 ease-in-out">
@@ -83,20 +73,16 @@
     </div>
   </div>
 
-  <!-- Custom Modal Structure -->
   <div id="modalBackdrop" class="hidden modal-backdrop">
     <div id="modalContent" class="modal-content">
       <h3 id="modal-title" class="text-xl font-bold mb-4">Modal Title</h3>
 
-      <!-- Input fields for Add/Edit Task/List -->
       <input type="text" id="modal-task-text" placeholder="Task description"
         class="mb-4 p-2 border border-gray-300 rounded w-full" />
       <input type="date" id="modal-due-date" class="mb-4 p-2 border border-gray-300 rounded w-full" />
 
-      <!-- View Task Details Section -->
       <div id="view-task-details" class="hidden">
         <div class="mb-6">
-          <!-- <h2 id="view-task-title" class="text-2xl font-bold text-gray-800 mb-4"></h2> -->
           <div class="bg-gray-50 p-4 rounded-lg">
             <p id="view-task-description" class="text-gray-600"></p>
           </div>
@@ -118,14 +104,6 @@
               <p id="view-task-time" class="text-gray-700"></p>
             </div>
           </div>
-
-          <!-- <div class="flex items-center">
-            <i class="fas fa-map-marker-alt text-gray-500 mr-3 w-5 text-center"></i>
-            <div>
-              <p class="text-sm text-gray-500">Location</p>
-              <p id="view-task-location" class="text-gray-700">Not specified</p>
-            </div>
-          </div> -->
         </div>
       </div>
 

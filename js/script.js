@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalContent = document.getElementById('modalContent');
   const modalTitle = document.getElementById('modal-title');
   const modalTaskText = document.getElementById('modal-task-text'); // Input field
-  const modalDueDate = document.getElementById('modal-due-date');     // Input field
+  const modalDueDate = document.getElementById('modal-due-date'); // Input field
   const modalSaveBtn = document.getElementById('modal-save-btn');
   const modalCancelBtn = document.getElementById('modal-cancel-btn');
   const profileContainer = document.getElementById('profile-img-container');
@@ -129,11 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="filter-btn py-1 px-2 rounded-full text-sm font-medium transition-colors duration-200 border ${listObject.currentFilter === 'completed' ? 'bg-blue-500 text-white border-transparent' : 'bg-slate-200 text-slate-700 border-slate-300 hover:bg-slate-300'}" data-list-id="${listObject.id}" data-filter="completed">Completed</button>
             </div>
             <div id="${listObject.id}-list" class="task-list">
-              <!-- Tasks will be dynamically inserted here -->
-            </div>
+              </div>
           `;
 
       cardWrapper.appendChild(cardElement);
+      // Append the delete button for the card to the wrapper, positioning it absolutely
+      const deleteCardButton = document.createElement('button');
+      deleteCardButton.classList.add('delete-card-btn', 'absolute', 'top-0', 'right-0', 'text-red-500', 'hover:text-red-700', 'text-xl', 'p-1');
+      deleteCardButton.setAttribute('data-list-id', listObject.id);
+      deleteCardButton.innerHTML = '<i class="fas fa-times-circle"></i>';
+      cardWrapper.appendChild(deleteCardButton);
+
+
       taskCardsContainer.appendChild(cardWrapper);
 
       const taskListElement = document.getElementById(`${listObject.id}-list`);
@@ -318,6 +325,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function deleteTaskList(listId) {
+    allTaskLists = allTaskLists.filter(list => list.id !== listId);
+    renderAllTaskCards();
+    displayMessage("Task list deleted successfully!", "success");
+  }
+
   function deleteAllCards() {
     allTaskLists = [];
     renderAllTaskCards();
@@ -325,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function displayMessage(message, type = "info") {
     const messageBox = document.createElement('div');
-    messageBox.classList.add('fixed', 'bottom-4', 'left-1/2', '-translate-x-1/2', 'p-3', 'rounded-lg', 'shadow-lg', 'text-white', 'z-50', 'transition-all', 'duration-300', 'transform', 'scale-0');
+    messageBox.classList.add('fixed', 'top-4', 'left-1/2', '-translate-x-1/2', 'p-3', 'rounded-lg', 'shadow-lg', 'text-white', 'z-50', 'transition-all', 'duration-300', 'transform', 'scale-0');
 
     if (type === "error") {
       messageBox.classList.add('bg-red-500');
@@ -378,6 +391,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const taskId = taskItem.dataset.taskId;
       const listId = taskItem.closest('.task-list').id.replace('-list', '');
       deleteTask(taskId, listId);
+    }
+    else if (event.target.closest('.delete-card-btn')) {
+      const listId = event.target.closest('.delete-card-btn').dataset.listId;
+      deleteTaskList(listId);
     }
     else if (event.target.classList.contains('filter-btn')) {
       const listId = event.target.dataset.listId;
