@@ -312,6 +312,10 @@ document.addEventListener('DOMContentLoaded', () => {
         displayMessage("Task description cannot be empty.", "error");
         return;
       }
+      if (taskDate === '') {
+        displayMessage("Task date cannot be empty.", "error");
+        return;
+      }
       addNewTask(currentListIdForTask, taskText, taskDate);
     }
     hideModal(); // Always hide modal after save
